@@ -3,6 +3,7 @@
 /* eth */
 #define ETH_ALEN 6
 #define ETHERTYPE_IP 0x0800
+#define IP_TCP 6
 
 struct libnet_ethernet_hdr {
 	uint8_t ether_dhost[ETH_ALEN];
