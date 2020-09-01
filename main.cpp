@@ -75,9 +75,10 @@ int main(int argc, char* argv[]) {
         printf("Dst Port : %d\n" , ntohs(tcph->th_dport));
 
         // Packet 데이타 를 출력한다.
-
-        for(int i = 0; i <16 && i < (header->len) - (iph->ip_hl)*4 - (tcph->th_off)*4; i++)
-            printf("%02x", *((packet++) + (iph->ip_hl)*4 + (tcph->th_off)*4 + sizeof(struct libnet_ethernet_hdr)));
+        packet += (iph->ip_hl)*4 + (tcph->th_off)*4 + sizeof(struct libnet_ethernet_hdr);
+      
+        for(int i = 0; i <16 && i < ntohs(iph->ip_len) - (iph->ip_hl)*4 - (tcph->th_off)*4; i++)
+            printf("%02x", *(packet++));
         printf("\n");
     }
     
